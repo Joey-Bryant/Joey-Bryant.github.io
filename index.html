@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="en" class="dark-theme"> <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Corner of the Internet</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+    <style>
+        /* Solarized Color Palette - Raw Values */
+        :root {
+            --raw-base03: #002b36;
+            --raw-base02: #073642;
+            --raw-base01: #586e75;
+            --raw-base00: #657b83;
+            --raw-base0:  #839498;
+            --raw-base1:  #93a1a2;
+            --raw-base2:  #eee8d5;
+            --raw-base3:  #fdf6e3;
+
+            --raw-yellow:    #b58900;
+            --raw-orange:   #cb4b16;
+            --raw-red:      #dc322f;
+            --raw-magenta:  #d33682;
+            --raw-violet:   #6c71c4;
+            --raw-blue:     #268bd2;
+            --raw-cyan:     #2aa198;
+            --raw-green:    #859900;
+
+            --font-pixel: 'Press Start 2P', cursive;
+            --font-retro-body: 'VT323', monospace;
+            --sidebar-width: 220px; 
+        }
+
+        /* Theme Variables Definition */
+        html.dark-theme {
+            --page-bg: var(--raw-base03);
+            --text-color: var(--raw-base0);
+            --heading-color: var(--raw-base1);
+            --link-color: var(--raw-cyan);
+            --link-hover-color: var(--raw-magenta);
+            
+            --sidebar-bg: var(--raw-base02);
+            --sidebar-border: var(--raw-base01);
+            --sidebar-nav-link-color: var(--raw-base1); 
+            --sidebar-nav-link-hover-bg: var(--raw-base03);
+            --sidebar-nav-link-hover-text: var(--raw-yellow);
+            --sidebar-nav-link-active-bg: var(--raw-base01); 
+            --sidebar-nav-link-active-text: var(--raw-yellow); 
+
+            --user-profile-name-color: var(--raw-base1);
+            --user-profile-image-border: var(--raw-base1); 
+
+            --contact-banner-bg: var(--raw-base03);
+            --contact-banner-border: var(--raw-cyan);
+            --contact-banner-heading: var(--raw-magenta);
+            --contact-item-bg: var(--raw-base02);
+            --contact-item-border: var(--raw-base00);
+            --contact-icon-fill: var(--raw-base1);
+            --contact-link-text-color: var(--raw-base1);
+            --contact-link-text-hover: var(--raw-yellow);
+            --contact-link-underline: var(--raw-magenta);
+            --contact-link-underline-hover: var(--raw-yellow);
+
+            --copy-button-bg: var(--raw-green);
+            --copy-button-text: var(--raw-base3); 
+            --copy-button-border: var(--raw-base1);
+            --copy-button-hover-bg: var(--raw-yellow);
+            --copy-button-copied-bg: var(--raw-violet);
+            --copy-button-copied-text: var(--raw-base3);
+
+            --main-content-bg: var(--raw-base02);
+            --main-content-text: var(--raw-base0);
+            --main-content-heading: var(--raw-yellow);
+            --section-bg: var(--raw-base03);
+            --section-border: var(--raw-base00);
+            --list-bullet-color: var(--raw-magenta);
+            --list-link-color: var(--raw-cyan);
+            --list-link-hover-color: var(--raw-green);
+
+            --marquee-bg: var(--raw-base02);
+            --marquee-text: var(--raw-base3);
+            --marquee-border: var(--raw-yellow);
+
+            --footer-bg: var(--raw-base02);
+            --footer-text: var(--raw-base0); 
+            --footer-border: var(--raw-base01);
+
+            --theme-toggle-bg: var(--raw-magenta);
+            --theme-toggle-text: var(--raw-base3);
+            --sidebar-internal-button-bg: var(--raw-base01); 
+            --sidebar-internal-button-text: var(--raw-base03);
+
+            --sidebar-edge-toggle-bg: var(--sidebar-internal-button-bg); 
+            --sidebar-edge-toggle-border: var(--sidebar-border);
+            --sidebar-edge-toggle-arrow: var(--sidebar-internal-button-text);
+        }
+
+        html.light-theme {
+            --page-bg: var(--raw-base3);
+            --text-color: var(--raw-base00); 
+            --heading-color: var(--raw-base01);
+            --link-color: var(--raw-cyan); 
+            --link-hover-color: var(--raw-violet);
+
+            --sidebar-bg: var(--raw-base2);
+            --sidebar-border: var(--raw-base1);
+            --sidebar-nav-link-color: var(--raw-base01);
+            --sidebar-nav-link-hover-bg: var(--raw-base3);
+            --sidebar-nav-link-hover-text: var(--raw-orange);
+            --sidebar-nav-link-active-bg: var(--raw-base1); 
+            --sidebar-nav-link-active-text: var(--raw-orange); 
+
+            --user-profile-name-color: var(--raw-base01);
+            --user-profile-image-border: var(--raw-base01); 
+
+            --contact-banner-bg: var(--raw-base3);
+            --contact-banner-border: var(--raw-cyan); 
+            --contact-banner-heading: var(--raw-green);
+            --contact-item-bg: var(--raw-base2);
+            --contact-item-border: var(--raw-base1);
+            --contact-icon-fill: var(--raw-base01);
+            --contact-link-text-color: var(--raw-base00);
+            --contact-link-text-hover: var(--raw-orange);
+            --contact-link-underline: var(--raw-green); 
+            --contact-link-underline-hover: var(--raw-orange); 
+            
+            --copy-button-bg: var(--raw-yellow); 
+            --copy-button-text: var(--raw-base3);
+            --copy-button-border: var(--raw-base00);
+            --copy-button-hover-bg: var(--raw-orange);
+            --copy-button-copied-bg: var(--raw-green); 
+            --copy-button-copied-text: var(--raw-base3);
+
+            --main-content-bg: var(--raw-base3);
+            --main-content-text: var(--raw-base01);
+            --main-content-heading: var(--raw-orange);
+            --section-bg: var(--raw-base2);
+            --section-border: var(--raw-base1);
+            --list-bullet-color: var(--raw-green);
+            --list-link-color: var(--raw-cyan); 
+            --list-link-hover-color: var(--raw-orange);
+
+            --marquee-bg: var(--raw-base2);
+            --marquee-text: var(--raw-base01);
+            --marquee-border: var(--raw-orange); 
+
+            --footer-bg: var(--raw-base2);
+            --footer-text: var(--raw-base00);
+            --footer-border: var(--raw-base1);
+
+            --theme-toggle-bg: var(--raw-green);
+            --theme-toggle-text: var(--raw-base3);
+            --sidebar-internal-button-bg: var(--raw-base1); 
+            --sidebar-internal-button-text: var(--raw-base3);
+
+            --sidebar-edge-toggle-bg: var(--sidebar-internal-button-bg); 
+            --sidebar-edge-toggle-border: var(--sidebar-border);
+            --sidebar-edge-toggle-arrow: var(--sidebar-internal-button-text);
+        }
+
+        /* Basic Reset & Body Styling */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { font-size: 16px; }
+        body {
+            font-family: var(--font-retro-body);
+            background-color: var(--page-bg); 
+            color: var(--text-color); 
+            line-height: 1.7;
+            font-size: 1.1rem;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        h1, h2, h3 { 
+            font-family: var(--font-pixel);
+            color: var(--heading-color); 
+            margin-bottom: 0.5em;
+        }
+        h1 { font-size: 1.8rem; } h2 { font-size: 1.4rem; }
+        a { color: var(--link-color); text-decoration: none; }
+        a:hover, a:focus { color: var(--link-hover-color); }
+
+        /* Sidebar Navigation */
+        .sidebar-nav {
+            position: fixed; left: 0; top: 0;
+            width: var(--sidebar-width); 
+            height: 100%;
+            background-color: var(--sidebar-bg);
+            padding-top: 5px; 
+            border-right: 4px ridge var(--sidebar-border);
+            overflow-y: auto; z-index: 1000;
+            transition: transform 0.3s ease-out, background-color 0.3s, border-right-color 0.3s;
+            transform: translateX(-100%); 
+        }
+        html.sidebar-is-open .sidebar-nav { 
+            transform: translateX(0); 
+        }
+
+        /* Wrapper for top controls in sidebar */
+        .sidebar-top-controls {
+            display: flex;
+            justify-content: space-between; 
+            align-items: center;
+            padding: 0 10px 5px 10px; 
+            border-bottom: 1px dotted var(--sidebar-border); 
+            margin-bottom: 5px; 
+        }
+
+        .sidebar-internal-button, .theme-toggle-button {
+            font-family: var(--font-pixel);
+            font-size: 0.7rem;
+            padding: 8px 10px; 
+            border: 2px outset var(--sidebar-border); 
+            cursor: pointer;
+            text-align: center;
+            box-shadow: 2px 2px 0px var(--page-bg); 
+            transition: background-color 0.3s, color 0.3s, border-color 0.3s, box-shadow 0.3s;
+        }
+        .sidebar-internal-button:active, .theme-toggle-button:active {
+             box-shadow: none; transform: translate(2px, 2px);
+        }
+
+        #sidebar-close-button { 
+            background-color: var(--sidebar-internal-button-bg);
+            color: var(--sidebar-internal-button-text);
+            width: auto; 
+        }
+        #sidebar-close-button .arrow-icon {
+            display: inline-block;
+            transform: rotate(180deg); 
+            font-size: 1rem; 
+        }
+        
+        .theme-toggle-button { 
+            color: var(--theme-toggle-text);
+            background-color: var(--theme-toggle-bg); 
+            flex-grow: 1; 
+            margin: 0 0 0 10px; 
+        }
+
+        /* User Profile Section in Sidebar */
+        .sidebar-user-profile {
+            padding: 0px;
+            text-align: center; 
+            border-bottom: 1px dotted var(--sidebar-border);
+            margin-bottom: 5px;
+        }
+        .sidebar-user-profile img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%; 
+            border: 3px outset var(--user-profile-image-border); 
+            margin-bottom: 0px;
+            object-fit: cover;
+	    object-position: top;
+            display: inline-block; 
+        }
+        .sidebar-user-profile .user-name {
+            font-family: var(--font-pixel);
+            font-size: 0.9rem;
+            color: var(--user-profile-name-color);
+            margin-top: 0px;
+        }
+
+
+        .sidebar-nav > ul > li > a { 
+            display: block; padding: 5px 20px; 
+            font-family: var(--font-pixel); font-size: 0.8rem;
+            color: var(--sidebar-nav-link-color);
+            border-bottom: 1px dotted var(--sidebar-border);
+            transition: background-color 0.3s, color 0.3s, border-bottom-color 0.3s;
+        }
+        .sidebar-nav > ul > li > a:hover, 
+        .sidebar-nav > ul > li > a:focus {
+            background-color: var(--sidebar-nav-link-hover-bg);
+            color: var(--sidebar-nav-link-hover-text);
+            text-decoration: none;
+        }
+        .sidebar-nav > ul > li > a.active-nav-link {
+            background-color: var(--sidebar-nav-link-active-bg);
+            color: var(--sidebar-nav-link-active-text);
+            font-weight: bold; 
+        }
+        .sidebar-nav > ul > li > a.active-nav-link:hover,
+        .sidebar-nav > ul > li > a.active-nav-link:focus {
+             background-color: var(--sidebar-nav-link-hover-bg); 
+             color: var(--sidebar-nav-link-hover-text);
+        }
+
+
+        /* --- Contact Banner Styles --- */
+        .contact-banner {
+            padding: 0px 10px 5px 10px; margin: 0px 10px 5px 10px; 
+            border: 2px outset var(--contact-banner-border);
+            background-color: var(--contact-banner-bg); 
+            transition: background-color 0.3s, border-color 0.3s;
+        }
+        .contact-banner h3 {
+            font-family: var(--font-pixel); font-size: 1.3rem;
+            color: var(--contact-banner-heading);
+            margin-bottom: 0px; text-align: center; 
+            transition: color 0.3s;
+        }
+        .contact-banner ul { 
+            padding-left: 0; list-style: none; 
+            display: flex; flex-direction: column; gap: 4px;
+        }
+        .contact-item {
+            display: flex; align-items: center; 
+            background-color: var(--contact-item-bg); 
+            padding: 3px; 
+            border: 1px solid var(--contact-item-border); 
+            transition: background-color 0.3s, border-color 0.3s;
+        }
+        .contact-link { 
+            text-decoration: none; flex-grow: 1; 
+            display: flex; align-items: center; 
+            padding: 2px 2px; margin: 0px;   
+            gap: 6px; 
+            transition: background-color 0.3s; 
+            border-radius: 3px; 
+        }
+        .contact-link:hover { background-color: var(--sidebar-nav-link-hover-bg); }
+        .contact-link .contact-icon { flex-shrink: 0; width: 19px; height: 19px; }
+        .contact-link .contact-icon svg { width: 100%; height: 100%; fill: var(--contact-icon-fill); transition: fill 0.3s; }
+        .contact-link .link-text-wrapper {
+            font-family: var(--font-retro-body); font-size: 1.3rem; 
+            color: var(--contact-link-text-color); 
+            display: inline; padding-left: 0; margin-left: 0;  
+            text-indent: 0; white-space: nowrap; 
+            text-overflow: ellipsis; overflow: hidden; 
+            vertical-align: middle; line-height: 1.0;
+            border-bottom: 2.0px dotted var(--contact-link-underline);
+            padding-bottom: 0px; 
+            transition: color 0.3s, border-color 0.3s; 
+        }
+        .contact-link:hover .link-text-wrapper { 
+            color: var(--contact-link-text-hover);
+            text-decoration: none; 
+            border-bottom-color: var(--contact-link-underline-hover); 
+        }
+        .copy-button {
+            background-color: var(--copy-button-bg);
+            border: 1px outset var(--copy-button-border);
+            color: var(--copy-button-text); 
+            cursor: pointer; flex-shrink: 0; 
+            padding: 2px; width: 22px; height: 22px; 
+            display: flex; align-items: center; justify-content: center;
+            margin-left: 4px; margin-right: 2px; 
+            transition: background-color 0.2s;
+        }
+        .copy-button svg { width: 12px; height: 12px; fill: var(--copy-button-text); transition: fill 0.3s; }
+        .copy-button:hover { background-color: var(--copy-button-hover-bg); }
+        .copy-button.copied { 
+            background-color: var(--copy-button-copied-bg);
+            cursor: default; font-family: var(--font-pixel); 
+            font-size: 0.45rem; color: var(--copy-button-copied-text); 
+            padding: 4px 1px; line-height: 1;
+        }
+        /* --- End of Contact Banner Styles --- */
+
+        /* Main Content Area */
+        .main-content {
+            padding: 30px;
+            background-color: var(--main-content-bg);
+            color: var(--main-content-text);
+            min-height: 100vh;
+            transition: background-color 0.3s, color 0.3s, margin-left 0.3s ease-out; 
+            margin-left: 0; 
+        }
+        html.sidebar-is-open .main-content {
+            margin-left: var(--sidebar-width);
+        }
+        
+        .main-content h1, .main-content h2 { color: var(--main-content-heading); transition: color 0.3s; }
+        .main-content section {
+            margin-bottom: 30px; padding: 15px;
+            border: 2px dashed var(--section-border);
+            background-color: var(--section-bg);
+            transition: background-color 0.3s, border-color 0.3s;
+        }
+        .welcome-area { text-align: center; margin-bottom: 30px; }
+        .construction-gif { 
+            display: block; margin: 15px auto;
+            border: 4px groove var(--main-content-heading); 
+            max-width: 200px;
+        }
+        .future-construction-gif { 
+            display: block; margin: 20px auto 10px auto; 
+            border: 3px groove var(--main-content-heading); 
+            max-width: 120px; 
+        }
+        .welcome-area p { font-size: 1.2rem; max-width: 700px; margin: 0 auto 20px auto; }
+        
+        /* Future Content List Styling */
+        .future-content-list {
+            list-style: none; /* Use custom bullets */
+            padding-left: 0;
+            margin-top: 15px;
+        }
+        .future-content-list li {
+            margin-bottom: 10px;
+            font-size: 1.1rem; /* Match section-overview-list */
+            padding: 5px;
+            border: 1px solid var(--section-border); /* Use section border color */
+            background-color: var(--section-bg); /* Use section background color */
+        }
+        .future-content-list li::before {
+            content: "☆ "; /* Star bullet for future items */
+            color: var(--list-bullet-color); /* Use existing list bullet color variable */
+            font-family: var(--font-pixel);
+            font-size: 0.8em;
+            margin-right: 8px;
+        }
+
+        .section-overview-list { list-style: none; padding-left: 0; }
+        .section-overview-list li {
+            margin-bottom: 10px; font-size: 1.1rem; padding: 5px;
+            border: 1px solid var(--section-border);
+            background-color: var(--section-bg); 
+            transition: background-color 0.3s, border-color 0.3s, color 0.3s;
+        }
+        .section-overview-list li::before {
+            content: "» "; color: var(--list-bullet-color);
+            font-family: var(--font-pixel); font-size: 0.8em;
+            margin-right: 5px; transition: color 0.3s;
+        }
+        .section-overview-list li a { font-weight: bold; color: var(--list-link-color); transition: color 0.3s; }
+        .section-overview-list li a:hover { color: var(--list-link-hover-color); }
+
+        .marquee-container {
+            width: 100%; overflow: hidden;
+            background-color: var(--marquee-bg); color: var(--marquee-text);
+            padding: 10px 0;
+            border-top: 3px ridge var(--marquee-border);
+            border-bottom: 3px ridge var(--marquee-border);
+            margin-bottom: 30px; box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            transition: background-color 0.3s, color 0.3s, border-top-color 0.3s, border-bottom-color 0.3s;
+        }
+        .marquee-text {
+            display: inline-block; white-space: nowrap;
+            font-family: var(--font-pixel); font-size: 0.9rem;
+            padding-left: 100%; animation: marquee-scroll 25s linear infinite;
+        }
+        @keyframes marquee-scroll {
+            0% { transform: translateX(0%); }
+            100% { transform: translateX(-100%); }
+        }
+
+        .site-footer {
+            text-align: center; padding: 20px;
+            font-family: var(--font-retro-body); font-size: 0.9rem;
+            color: var(--footer-text);
+            border-top: 2px solid var(--footer-border);
+            background-color: var(--footer-bg);
+            transition: background-color 0.3s, color 0.3s, border-top-color 0.3s;
+        }
+        .site-footer p { margin-bottom: 5px; }
+        .site-footer p:last-child { margin-bottom: 0; }
+        
+        /* Sidebar Edge Toggle Button (for opening when sidebar is closed) */
+        .sidebar-edge-toggle {
+            position: fixed;
+            top: 10px; 
+            left: 0px; 
+            z-index: 1005; 
+            background-color: var(--sidebar-edge-toggle-bg);
+            color: var(--sidebar-edge-toggle-arrow);
+            border: 2px outset var(--sidebar-edge-toggle-border); 
+            width: 34px; 
+            height: 34px;
+            padding: 0;
+            font-family: var(--font-pixel); 
+            font-size: 0.9rem; 
+            line-height: 30px; 
+            cursor: pointer;
+            display: none; 
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.3s ease-out, background-color 0.3s, color 0.3s, border-color 0.3s; 
+            user-select: none; 
+            border-radius: 0; 
+            box-shadow: 2px 2px 0px var(--page-bg);
+            opacity: 0; 
+        }
+        .sidebar-edge-toggle:active {
+            box-shadow: none; transform: translate(2px, 2px);
+        }
+
+        .sidebar-edge-toggle .arrow-icon {
+            display: inline-block;
+            transform: rotate(0deg); /* Points right */
+        }
+
+        html:not(.sidebar-is-open) .sidebar-edge-toggle {
+            display: flex;
+            opacity: 1;
+        }
+        html.sidebar-is-open .sidebar-edge-toggle {
+            opacity: 0;
+            pointer-events: none; 
+        }
+
+
+        @media (max-width: 768px) {
+             .main-content { 
+                padding: 20px;
+            }
+            h1 { font-size: 1.5rem; }
+            h2 { font-size: 1.2rem; }
+            .welcome-area p { font-size: 1rem; }
+            .marquee-text { font-size: 0.8rem; }
+        }
+    </style>
+</head>
+<body> 
+    <button class="sidebar-edge-toggle" id="menu-open-button" aria-controls="sidebar-navigation">
+        <span class="arrow-icon">›</span>
+    </button>
+
+    <nav class="sidebar-nav" id="sidebar-navigation"> 
+        <div class="sidebar-top-controls">
+            <button id="sidebar-close-button" class="sidebar-internal-button" aria-label="Close sidebar">
+                <span class="arrow-icon">›</span>
+            </button>
+            <button id="theme-toggle" class="theme-toggle-button">Switch to Light Mode</button>
+        </div>
+        <div class="sidebar-user-profile">
+            <img src="./Meeee.webp" alt="Your Name" 
+                 onerror="this.onerror=null;this.src='https://placehold.co/100x100/073642/93a1a2?text=Profile+Pic';">
+            <p class="user-name">Joseph Bryant</p>
+        </div>
+        <div class="contact-banner">
+            <h3>Connect</h3>
+            <ul>
+                <li class="contact-item">
+                    <a href="mailto:joseph.w.bryant.7@gmail.com" target="_blank" class="contact-link" title="joseph.w.bryant.7@gmail.com">
+                        <span class="contact-icon">
+                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6zm-2 0l-8 5-8-5h16zm0 12H4V8l8 5 8-5v10z"/></svg>
+                        </span>
+                        <span class="link-text-wrapper">Email</span>
+                    </a>
+                    <button class="copy-button" data-copy-value="joseph.w.bryant.7@gmail.com" aria-label="Copy email address">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="copy-icon-svg"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
+                    </button>
+                </li>
+                <li class="contact-item">
+                    <a href="https://github.com/Joseph-W-Bryant" target="_blank" class="contact-link" title="https://github.com/Joseph-W-Bryant">
+                        <span class="contact-icon">
+                            <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+                        </span>
+                        <span class="link-text-wrapper">GitHub</span>
+                    </a>
+                    <button class="copy-button" data-copy-value="https://github.com/Joseph-W-Bryant" aria-label="Copy GitHub link">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="copy-icon-svg"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
+                    </button>
+                </li>
+                <li class="contact-item">
+                    <a href="https://www.linkedin.com/in/joseph--bryant/" target="_blank" class="contact-link" title="https://www.linkedin.com/in/joseph--bryant/">
+                        <span class="contact-icon">
+                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                        </span>
+                        <span class="link-text-wrapper">LinkedIn</span>
+                    </a>
+                    <button class="copy-button" data-copy-value="https://www.linkedin.com/in/joseph--bryant/" aria-label="Copy LinkedIn link">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="copy-icon-svg"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
+                    </button>
+                </li>
+            </ul>
+        </div>
+
+        <ul>
+            <li><a href="index.html" class="active-nav-link">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#resume">Resume</a></li>
+            <li><a href="#blog">Blog</a></li>
+            <li><a href="#ctf">CTF Writeups</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#hobbies">Hobbies</a></li>
+            <li><a href="#links">Links</a></li>
+        </ul>
+    </nav>
+
+    <main class="main-content">
+        <header class="welcome-area">
+            <h1>Welcome! Let’s Journey Together to Uncover Knowledge!</h1>
+            <img src="https://www.useragentman.com/shared/images/under-construction.gif" alt="Page Under Construction" class="construction-gif">
+            <p>
+                A corner of the internet where curiosity meets the web.
+                This site is a lovingly maintained work-in-progress, a "hidden gem" for the curious web surfer, lifelong learner, or potential employer.
+            </p>
+        </header>
+
+        <div class="marquee-container">
+            <div class="marquee-text">
+                <span>Hi, I just started making this website! Hope you enjoy!</span>
+            </div>
+        </div>
+        
+        <section class="site-overview">
+            <h2>Explore My World</h2>
+            <p>Dive into the various sections of my digital space:</p>
+            <ul class="section-overview-list">
+                <li><a href="#about">About Me</a>: Learn a bit more about Me!</li>
+                <li><a href="#resume">Resume</a>: My professional background and skills.</li>
+                <li><a href="#blog">Blog</a>: Random articles I write on legit anything.</li>
+                <li><a href="#ctf">CTF Writeups</a>: Chronicles of my adventures in cybersecurity challenges.</li>
+                <li><a href="#projects">Projects</a>: A showcase of things I've built and tinkered with.</li>
+                <li><a href="#hobbies">Hobbies</a>: What I do when I'm not on the computer!.</li>
+                <li><a href="#links">Links</a>: Other cool places on the web.</li>
+            </ul>
+        </section>
+
+        <section> 
+            <h2>Future Content & Adventures!</h2>
+            <p>Stay tuned! I'm excited to share more soon, including:</p>
+            <ul class="future-content-list">
+                <li>A detailed blog post on how I brought this very website to life.</li>
+                <li>My experiences and key takeaways from the CCDC (Collegiate Cyber Defense Competition).</li>
+                <li>Insights and stories from the Tampa Bsides Cybersecurity Competition.</li>
+                <li>Reflections on graduating and the journey so far.</li>
+                <li>A look ahead at my future goals and aspirations in tech and cybersecurity.</li>
+            </ul>
+            <img src="https://www.useragentman.com/shared/images/under-construction.gif" alt="Site section under construction" class="future-construction-gif">
+        </section>
+
+
+        <footer class="site-footer">
+            <p>&copy; <span id="currentYear"></span> Joseph Bryant. All rights reserved.</p>
+            <p>Website source code licensed under the MIT License.</p>
+        </footer>
+    </main>
+
+    <script>
+        const edgeOpenButton = document.getElementById('menu-open-button'); 
+        const internalCloseButton = document.getElementById('sidebar-close-button');
+        // const sidebarNav = document.getElementById('sidebar-navigation'); // Not directly needed for toggle logic now
+        const htmlEl = document.documentElement; 
+
+        function setInitialSidebarState() {
+            // Sidebar starts open by default on all screen sizes
+            htmlEl.classList.add('sidebar-is-open');
+            if (edgeOpenButton) { // Check if the button exists
+                edgeOpenButton.setAttribute('aria-expanded', 'true'); 
+            }
+        }
+
+        if (edgeOpenButton) {
+            edgeOpenButton.addEventListener('click', () => { 
+                htmlEl.classList.add('sidebar-is-open');
+                edgeOpenButton.setAttribute('aria-expanded', 'true');
+            });
+        }
+
+        if (internalCloseButton) {
+            internalCloseButton.addEventListener('click', () => { 
+                htmlEl.classList.remove('sidebar-is-open');
+                if (edgeOpenButton) { // Check if the button exists
+                    edgeOpenButton.setAttribute('aria-expanded', 'false'); 
+                }
+            });
+        }
+        
+        document.addEventListener('DOMContentLoaded', setInitialSidebarState);
+        
+        // Theme Toggle
+        const themeToggleButton = document.getElementById('theme-toggle');
+
+        if (themeToggleButton) { // Check if the button exists
+            themeToggleButton.addEventListener('click', () => {
+                if (htmlEl.classList.contains('dark-theme')) {
+                    htmlEl.classList.remove('dark-theme');
+                    htmlEl.classList.add('light-theme');
+                    themeToggleButton.textContent = 'Switch to Dark Mode';
+                } else {
+                    htmlEl.classList.remove('light-theme');
+                    htmlEl.classList.add('dark-theme');
+                    themeToggleButton.textContent = 'Switch to Light Mode';
+                }
+            });
+        }
+
+        // --- Clipboard Functionality ---
+        const copyIconSVG = `<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="copy-icon-svg"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>`;
+        const copyButtons = document.querySelectorAll('.copy-button');
+
+        copyButtons.forEach(button => {
+            button.addEventListener('click', (event) => { 
+                event.stopPropagation(); 
+                const valueToCopy = button.getAttribute('data-copy-value');
+                
+                try {
+                    navigator.clipboard.writeText(valueToCopy).then(() => {
+                        button.innerHTML = 'Copied!';
+                        button.classList.add('copied');
+                        
+                        setTimeout(() => {
+                            button.innerHTML = copyIconSVG;
+                            button.classList.remove('copied');
+                        }, 2000);
+                    }).catch(err => {
+                        fallbackCopyTextToClipboard(valueToCopy, button);
+                    });
+                } catch (err) {
+                    fallbackCopyTextToClipboard(valueToCopy, button);
+                }
+            });
+        });
+
+        function fallbackCopyTextToClipboard(text, button) {
+            const textArea = document.createElement("textarea");
+            textArea.value = text;
+            
+            textArea.style.top = "0";
+            textArea.style.left = "0";
+            textArea.style.position = "fixed";
+        
+            document.body.appendChild(textArea);
+            textArea.focus();
+            textArea.select();
+        
+            try {
+                const successful = document.execCommand('copy');
+                if(successful) {
+                    button.innerHTML = 'Copied!';
+                    button.classList.add('copied');
+                } else {
+                    button.innerHTML = 'Failed!';
+                }
+                setTimeout(() => {
+                    button.innerHTML = copyIconSVG;
+                    button.classList.remove('copied');
+                }, 2000);
+            } catch (err) {
+                console.error('Fallback: Oops, unable to copy', err);
+                button.innerHTML = 'Error!';
+                 setTimeout(() => {
+                    button.innerHTML = copyIconSVG;
+                    button.classList.remove('copied'); 
+                }, 2000);
+            }
+        
+            document.body.removeChild(textArea);
+        }
+
+        // Dynamic year in footer
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+    </script>
+
+</body>
+</html>
+
